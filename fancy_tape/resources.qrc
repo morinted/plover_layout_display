@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/fancy_tape">
+        <file>settings.svg</file>
+        <file>fancy_tape.svg</file>
+    </qresource>
+</RCC>
