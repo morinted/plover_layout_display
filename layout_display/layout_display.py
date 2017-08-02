@@ -7,25 +7,22 @@ from PyQt5.QtGui import QPainter, QFont, QColor, QPainterPath, QBrush
 
 from plover import system
 from plover.gui_qt.i18n import get_gettext
-from plover.gui_qt.utils import ToolBar
 from plover.gui_qt.tool import Tool
-from plover.steno import Stroke
 
-from fancy_tape.layout_display_ui import Ui_LayoutDisplay
+from layout_display.layout_display_ui import Ui_LayoutDisplay
 
 _ = get_gettext()
 
 
-class FancyTape(Tool, Ui_LayoutDisplay):
+class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
     ''' Paper tape display of strokes. '''
 
     TITLE = _('Layout Display')
-    ICON = ':/fancy_tape/fancy_tape.svg'
-    ROLE = 'fancy_tape'
+    ROLE = 'layout_display'
 
     def __init__(self, engine):
-        super(FancyTape, self).__init__(engine)
+        super(LayoutDisplay, self).__init__(engine)
         self.setupUi(self)
         self._stroke = []
         engine.signal_connect('config_changed', self.on_config_changed)

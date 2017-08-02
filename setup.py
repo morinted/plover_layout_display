@@ -11,9 +11,9 @@ class CustomBuildPy(build_py):
 cmdclass['build_py'] = CustomBuildPy
 
 setup(
-    name="plover_fancy_tape",
-    version="0.0.4",
-    description="Paper tape, but with fancy fading",
+    name="plover_layout_display",
+    version="0.0.1",
+    description="Display keys hit on stroke",
     author="Ted Morin",
     author_email="morinted@gmail.com",
     license="GPLv2+",
@@ -21,12 +21,12 @@ setup(
         "plover>=4.0.0.dev0",
     ],
     packages=[
-        'fancy_tape',
+        'layout_display',
     ],
     include_package_data=True,
     entry_points="""
     [plover.gui.qt.tool]
-    fancy_tape = fancy_tape.fancy_tape:FancyTape
+    layout_display = layout_display.layout_display:LayoutDisplay
     """,
     cmdclass=cmdclass,
     setup_requires = [

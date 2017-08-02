@@ -1,12 +1,12 @@
 {
     "files": [
         [
-            "fancy_tape/*.qrc",
-            "fancy_tape"
+            "layout_display/*.qrc",
+            "layout_display"
         ],
         [
-            "fancy_tape/*.ui",
-            "fancy_tape"
+            "layout_display/*.ui",
+            "layout_display"
         ]
     ],
     "pyrcc": "pyrcc5",
