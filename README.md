@@ -1,6 +1,6 @@
-# Fancy Paper Tape
+# Plover Layout Display
 
-Make your Plover paper tape look mighty fancy with mad fading techniques. Probably not battle-tested and ready for the real world.
+Display the last stroke in a visual format for English stenography.
 
 # License
 
