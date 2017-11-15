@@ -1,36 +1,19 @@
+#!/usr/bin/env python3
+
+__requires__ = '''
+plover>=4.0.0.dev2
+setuptools>=30.3.0
+'''
+
 from setuptools import setup
-from setuptools.command.build_py import build_py
-from pyqt_distutils.build_ui import build_ui
-cmdclass = {"build_ui": build_ui}
 
-class CustomBuildPy(build_py):
-    def run(self):
-        self.run_command('build_ui')
-        build_py.run(self)
+from plover_build_utils.setup import BuildPy, BuildUi
 
-cmdclass['build_py'] = CustomBuildPy
+BuildPy.build_dependencies.append('build_ui')
+BuildUi.hooks = ['plover_build_utils.pyqt:fix_icons']
+cmdclass = {
+    'build_py': BuildPy,
+    'build_ui': BuildUi,
+}
 
-setup(
-    name="plover_layout_display",
-    version="0.0.1",
-    description="Display keys hit on stroke",
-    author="Ted Morin",
-    author_email="morinted@gmail.com",
-    license="GPLv2+",
-    install_requires=[
-        "plover>=4.0.0.dev0",
-    ],
-    packages=[
-        'layout_display',
-    ],
-    include_package_data=True,
-    entry_points="""
-    [plover.gui.qt.tool]
-    layout_display = layout_display.layout_display:LayoutDisplay
-    """,
-    cmdclass=cmdclass,
-    setup_requires = [
-        'setuptools-scm',
-    ],
-    zip_safe=True,
-)
+setup(cmdclass=cmdclass)

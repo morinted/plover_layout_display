@@ -1,0 +1,5 @@
+# UI.
+exclude layout_display/*_rc.py
+exclude layout_display/*_ui.py
+include layout_display/*.ui
+recursive-include layout_display/resources *

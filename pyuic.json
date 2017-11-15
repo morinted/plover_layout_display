@@ -7,8 +7,9 @@
         [
             "layout_display/*.ui",
             "layout_display"
-        ]
+        ],
     ],
+    "hooks": [],
     "pyrcc": "pyrcc5",
     "pyrcc_options": "",
     "pyuic": "pyuic5",

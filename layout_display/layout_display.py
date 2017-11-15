@@ -20,6 +20,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
     TITLE = _('Layout Display')
     ROLE = 'layout_display'
+    ICON = ':/layout_display/steno_key.svg'
 
     def __init__(self, engine):
         super(LayoutDisplay, self).__init__(engine)
@@ -46,7 +47,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
     def paintEvent(self, event):
         padding = 4
         key_width = 30
-        key_height = 45
+        key_height = 35
         StenoKey = namedtuple('StenoKey', 'x y w h rounded key_name')
         keys = (
             [ StenoKey(0, 0, 10, 0.5, False, '#'),

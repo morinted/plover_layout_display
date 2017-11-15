@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/layout_display">
+      <file>steno_key.svg</file>
+    </qresource>
+</RCC>
