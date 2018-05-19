@@ -1,6 +1,6 @@
 {
     "name": "English Stenotype",
-    "padding": 4.0,
+    "margin": 5.0,
     "key_width": 30,
     "key_height": 35,
     "keys": [

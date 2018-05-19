@@ -16,7 +16,7 @@ class StenoLayout():
     ''' Represents the structure of a stenography layout '''
 
     name: str = 'Default Layout Name'
-    padding: float = 4.0
+    margin: float = 5.0
     key_width: int = 30
     key_height: int = 35
     keys: List[StenoKey] = []
@@ -60,8 +60,8 @@ class StenoLayout():
 
         if 'name' in data:
             self.name = data['name']
-        if 'padding' in data:
-            self.padding = data['padding']
+        if 'margin' in data:
+            self.margin = data['margin']
         if 'key_width' in data:
             self.key_width = data['key_width']
         if 'key_height' in data:
@@ -85,9 +85,9 @@ class StenoLayout():
     def get_width(self) -> int:
         ''' Calculates the width the layout requires '''
 
-        return max(self.padding + key.position_x + key.width * self.key_width for key in self.keys)
+        return max(self.margin + key.position_x + key.width * self.key_width for key in self.keys)
 
     def get_height(self) -> int:
         ''' Calculates the height the layout requires '''
 
-        return max(self.padding + key.position_y + key.height * self.key_height for key in self.keys)
+        return max(self.margin + key.position_y + key.height * self.key_height for key in self.keys)

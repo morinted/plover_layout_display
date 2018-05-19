@@ -24,6 +24,9 @@
   <property name="windowTitle">
    <string>Layout Display</string>
   </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="grid_layout">
@@ -69,7 +72,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QGraphicsView" name="layout_display_view">
+    <widget class="LayoutDisplayView" name="layout_display_view">
      <property name="accessibleName">
       <string>Layout Display Area</string>
      </property>
@@ -92,6 +95,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LayoutDisplayView</class>
+   <extends>QGraphicsView</extends>
+   <header>layout_display.layout_graphics</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources/resources.qrc"/>
  </resources>
