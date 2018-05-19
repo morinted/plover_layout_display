@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/layout_display">
       <file>steno_key.svg</file>
+      <file>english_stenotype.json</file>
     </qresource>
 </RCC>

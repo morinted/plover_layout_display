@@ -1,0 +1,241 @@
+{
+    "name": "English Stenotype",
+    "padding": 4.0,
+    "key_width": 30,
+    "key_height": 35,
+    "keys": [
+        {
+            "name": "#",
+            "label": "",
+            "position_x": 0,
+            "position_y": 0,
+            "width": 10,
+            "height": 0.5,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+
+        {
+            "name": "S-",
+            "label": "",
+            "position_x": 0,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 2,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "T-",
+            "label": "",
+            "position_x": 1,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "P-",
+            "label": "",
+            "position_x": 2,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "H-",
+            "label": "",
+            "position_x": 3,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "*",
+            "label": "",
+            "position_x": 4,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 2,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-F",
+            "label": "",
+            "position_x": 5,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "-P",
+            "label": "",
+            "position_x": 6,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "-L",
+            "label": "",
+            "position_x": 7,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "-T",
+            "label": "",
+            "position_x": 8,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+        {
+            "name": "-D",
+            "label": "",
+            "position_x": 9,
+            "position_y": 0.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": false
+        },
+
+        {
+            "name": "K-",
+            "label": "",
+            "position_x": 1,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "W-",
+            "label": "",
+            "position_x": 2,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "R-",
+            "label": "",
+            "position_x": 3,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-R",
+            "label": "",
+            "position_x": 5,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-B",
+            "label": "",
+            "position_x": 6,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-G",
+            "label": "",
+            "position_x": 7,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-S",
+            "label": "",
+            "position_x": 8,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-Z",
+            "label": "",
+            "position_x": 9,
+            "position_y": 1.5,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+
+        {
+            "name": "A-",
+            "label": "",
+            "position_x": 2.2,
+            "position_y": 2.6,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "O-",
+            "label": "",
+            "position_x": 3.2,
+            "position_y": 2.6,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-E",
+            "label": "",
+            "position_x": 4.8,
+            "position_y": 2.6,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-U",
+            "label": "",
+            "position_x": 5.8,
+            "position_y": 2.6,
+            "width": 1,
+            "height": 1,
+            "is_round_top": false,
+            "is_round_bottom": true
+        }
+    ] 
+}
