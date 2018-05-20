@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 from PyQt5.QtCore import Qt, QMarginsF
 from PyQt5.QtWidgets import (QWidget, QGraphicsView, QGraphicsScene,
-                             QGraphicsSimpleTextItem)
+                             QGraphicsTextItem)
 from PyQt5.QtGui import (QPainterPath, QPen, QBrush, QColor,
                          QFont, QResizeEvent, QShowEvent)
 
@@ -46,6 +46,7 @@ class LayoutDisplayView(QGraphicsView):
         font = QFont(steno_layout.font) if steno_layout.font else QFont()
         # Clear all items from the scene. Could be more efficient...
         scene.clear()
+        scene.setBackgroundBrush(QBrush(QColor(steno_layout.background_color)))
 
         for key in steno_layout.keys:
             path = LayoutDisplayView._create_key_path(steno_layout, key)
@@ -55,8 +56,9 @@ class LayoutDisplayView(QGraphicsView):
             scene.addPath(path, pen, brush)
 
             if key.label:
-                label = QGraphicsSimpleTextItem(key.label)
+                label = QGraphicsTextItem(key.label)
                 label.setFont(font)
+                label.setDefaultTextColor(QColor(steno_layout.font_color))
 
                 label_rect = label.boundingRect()
                 label_rect.moveCenter(path.boundingRect().center())

@@ -5,6 +5,22 @@ from typing import List
 from PyQt5 import QtCore
 
 
+DEF_LAYOUT_NAME = 'Default Layout Name'
+DEF_FONT = ''
+DEF_FONT_COLOR = '#000000'
+DEF_BACKGROUND_COLOR = '#FFFFFF'
+DEF_MARGIN = 5.0
+DEF_KEY_WIDTH = 30
+DEF_KEY_HEIGHT = 35
+
+DEF_KEY_LABEL = ''
+DEF_KEY_WIDTH_UNIT = 1.0
+DEF_KEY_HEIGHT_UNIT = 1.0
+DEF_KEY_POS_X = 0.0
+DEF_KEY_POS_Y = 0.0
+DEF_KEY_COLOR = ''
+DEF_KEY_COLOR_PRESSED = '#000000'
+
 StenoKey = namedtuple('StenoKey',
                       'name label ' +
                       'position_x position_y ' +
@@ -15,15 +31,16 @@ StenoKey = namedtuple('StenoKey',
 class StenoLayout():
     ''' Represents the structure of a stenography layout '''
 
-    name: str = 'Default Layout Name'
-    font: str = ''
-    margin: float = 5.0
-    key_width: int = 30
-    key_height: int = 35
-    keys: List[StenoKey] = []
-
     def __init__(self):
-        pass
+        self.name = DEF_LAYOUT_NAME
+        self.font = DEF_FONT
+        self.font_color = DEF_FONT_COLOR
+        self.background_color = DEF_BACKGROUND_COLOR
+        self.margin = DEF_MARGIN
+        self.key_width = DEF_KEY_WIDTH
+        self.key_height = DEF_KEY_HEIGHT
+
+        self.keys: List[StenoKey] = []
 
     def load_from_file(self, file_path: str):
         ''' Populates layout information from the provided file path '''
@@ -59,28 +76,26 @@ class StenoLayout():
     def load_from_json(self, data: dict):
         ''' Populates layout information from the provided JSON data '''
 
-        if 'name' in data:
-            self.name = data['name']
-        if 'font' in data:
-            self.font = data['font']
-        if 'margin' in data:
-            self.margin = data['margin']
-        if 'key_width' in data:
-            self.key_width = data['key_width']
-        if 'key_height' in data:
-            self.key_height = data['key_height']
+        self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
+        self.font = data['font'] if 'font' in data else DEF_FONT
+        self.font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
+        self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
+        self.margin = data['margin'] if 'margin' in data else DEF_MARGIN
+        self.key_width = data['key_width'] if 'key_width' in data else DEF_KEY_WIDTH
+        self.key_height = data['key_height'] if 'key_height' in data else DEF_KEY_HEIGHT
 
         self.keys = []
         for key in data['keys']:
             self.keys.append(StenoKey(
+                # Make sure that name always exists; we'll default to unique
                 key['name'] if 'name' in key else str(len(self.keys)),
-                key['label'] if 'label' in key else '',
-                key['position_x'] if 'position_x' in key else 0.0,
-                key['position_y'] if 'position_y' in key else 0.0,
-                key['width'] if 'width' in key else 1.0,
-                key['height'] if 'height' in key else 1.0,
+                key['label'] if 'label' in key else DEF_KEY_LABEL,
+                key['position_x'] if 'position_x' in key else DEF_KEY_POS_X,
+                key['position_y'] if 'position_y' in key else DEF_KEY_POS_Y,
+                key['width'] if 'width' in key else DEF_KEY_WIDTH_UNIT,
+                key['height'] if 'height' in key else DEF_KEY_HEIGHT_UNIT,
                 key['is_round_top'] if 'is_round_top' in key else False,
                 key['is_round_bottom'] if 'is_round_bottom' in key else False,
-                key['color'] if 'color' in key else '',
-                key['color_pressed'] if 'color_pressed' in key else '#000000'
+                key['color'] if 'color' in key else DEF_KEY_COLOR,
+                key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED
             ))
