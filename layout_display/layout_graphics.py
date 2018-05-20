@@ -58,7 +58,7 @@ class LayoutDisplayView(QGraphicsView):
             if key.label:
                 label = QGraphicsTextItem(key.label)
                 label.setFont(font)
-                label.setDefaultTextColor(QColor(steno_layout.font_color))
+                label.setDefaultTextColor(QColor(key.font_color))
 
                 label_rect = label.boundingRect()
                 label_rect.moveCenter(path.boundingRect().center())

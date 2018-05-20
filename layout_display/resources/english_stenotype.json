@@ -1,28 +1,25 @@
 {
     "name": "English Stenotype",
     "margin": 5.0,
-    "key_width": 30,
-    "key_height": 35,
+    "key_width": 30.0,
+    "key_height": 35.0,
     "keys": [
         {
             "name": "#",
             "label": "",
-            "position_x": 0,
-            "position_y": 0,
-            "width": 10,
-            "height": 0.5,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "position_x": 0.0,
+            "position_y": 0.0,
+            "width": 10.0,
+            "height": 0.5
         },
 
         {
             "name": "S-",
             "label": "",
-            "position_x": 0,
+            "position_x": 0.0,
             "position_y": 0.5,
-            "width": 1,
-            "height": 2,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 2.0,
             "is_round_bottom": true
         },
         {
@@ -30,39 +27,32 @@
             "label": "",
             "position_x": 1,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "P-",
             "label": "",
             "position_x": 2,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "H-",
             "label": "",
             "position_x": 3,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "*",
             "label": "",
             "position_x": 4,
             "position_y": 0.5,
-            "width": 1,
-            "height": 2,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 2.0,
             "is_round_bottom": true
         },
         {
@@ -70,50 +60,40 @@
             "label": "",
             "position_x": 5,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "-P",
             "label": "",
             "position_x": 6,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "-L",
             "label": "",
             "position_x": 7,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "-T",
             "label": "",
             "position_x": 8,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
         {
             "name": "-D",
             "label": "",
             "position_x": 9,
             "position_y": 0.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
-            "is_round_bottom": false
+            "width": 1.0,
+            "height": 1.0
         },
 
         {
@@ -121,9 +101,8 @@
             "label": "",
             "position_x": 1,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -131,9 +110,8 @@
             "label": "",
             "position_x": 2,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -141,9 +119,8 @@
             "label": "",
             "position_x": 3,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -151,9 +128,8 @@
             "label": "",
             "position_x": 5,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -161,9 +137,8 @@
             "label": "",
             "position_x": 6,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -171,9 +146,8 @@
             "label": "",
             "position_x": 7,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -181,9 +155,8 @@
             "label": "",
             "position_x": 8,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -191,9 +164,8 @@
             "label": "",
             "position_x": 9,
             "position_y": 1.5,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
 
@@ -202,9 +174,8 @@
             "label": "",
             "position_x": 2.2,
             "position_y": 2.6,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -212,9 +183,8 @@
             "label": "",
             "position_x": 3.2,
             "position_y": 2.6,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -222,9 +192,8 @@
             "label": "",
             "position_x": 4.8,
             "position_y": 2.6,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         },
         {
@@ -232,9 +201,8 @@
             "label": "",
             "position_x": 5.8,
             "position_y": 2.6,
-            "width": 1,
-            "height": 1,
-            "is_round_top": false,
+            "width": 1.0,
+            "height": 1.0,
             "is_round_bottom": true
         }
     ] 

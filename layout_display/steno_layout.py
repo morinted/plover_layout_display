@@ -10,8 +10,8 @@ DEF_FONT = ''
 DEF_FONT_COLOR = '#000000'
 DEF_BACKGROUND_COLOR = '#FFFFFF'
 DEF_MARGIN = 5.0
-DEF_KEY_WIDTH = 30
-DEF_KEY_HEIGHT = 35
+DEF_KEY_WIDTH = 30.0
+DEF_KEY_HEIGHT = 35.0
 
 DEF_KEY_LABEL = ''
 DEF_KEY_WIDTH_UNIT = 1.0
@@ -26,7 +26,7 @@ StenoKey = namedtuple('StenoKey',
                       'position_x position_y ' +
                       'width height ' +
                       'is_round_top is_round_bottom ' +
-                      'color color_pressed')
+                      'color color_pressed font_color')
 
 class StenoLayout():
     ''' Represents the structure of a stenography layout '''
@@ -34,7 +34,6 @@ class StenoLayout():
     def __init__(self):
         self.name = DEF_LAYOUT_NAME
         self.font = DEF_FONT
-        self.font_color = DEF_FONT_COLOR
         self.background_color = DEF_BACKGROUND_COLOR
         self.margin = DEF_MARGIN
         self.key_width = DEF_KEY_WIDTH
@@ -78,7 +77,7 @@ class StenoLayout():
 
         self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
         self.font = data['font'] if 'font' in data else DEF_FONT
-        self.font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
+        font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
         self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
         self.margin = data['margin'] if 'margin' in data else DEF_MARGIN
         self.key_width = data['key_width'] if 'key_width' in data else DEF_KEY_WIDTH
@@ -97,5 +96,6 @@ class StenoLayout():
                 key['is_round_top'] if 'is_round_top' in key else False,
                 key['is_round_bottom'] if 'is_round_bottom' in key else False,
                 key['color'] if 'color' in key else DEF_KEY_COLOR,
-                key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED
+                key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED,
+                key['font_color'] if 'font_color' in key else font_color
             ))
