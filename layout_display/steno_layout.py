@@ -16,6 +16,7 @@ class StenoLayout():
     ''' Represents the structure of a stenography layout '''
 
     name: str = 'Default Layout Name'
+    font: str = ''
     margin: float = 5.0
     key_width: int = 30
     key_height: int = 35
@@ -60,6 +61,8 @@ class StenoLayout():
 
         if 'name' in data:
             self.name = data['name']
+        if 'font' in data:
+            self.font = data['font']
         if 'margin' in data:
             self.margin = data['margin']
         if 'key_width' in data:

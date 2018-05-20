@@ -1,11 +1,12 @@
 from typing import List, Tuple
 
 from PyQt5.QtCore import Qt, QMarginsF
-from PyQt5.QtWidgets import QWidget, QGraphicsView, QGraphicsScene
+from PyQt5.QtWidgets import (QWidget, QGraphicsView, QGraphicsScene,
+                             QGraphicsSimpleTextItem)
 from PyQt5.QtGui import (QPainterPath, QPen, QBrush, QColor,
-                         QResizeEvent, QShowEvent)
+                         QFont, QResizeEvent, QShowEvent)
 
-from layout_display.steno_layout import StenoLayout
+from layout_display.steno_layout import StenoLayout, StenoKey
 
 
 class LayoutDisplayView(QGraphicsView):
@@ -42,14 +43,25 @@ class LayoutDisplayView(QGraphicsView):
 
         scene = self.graphics_scene
         pen = self._scene_pen
+        font = QFont(steno_layout.font) if steno_layout.font else QFont()
         # Clear all items from the scene. Could be more efficient...
         scene.clear()
 
-        for path, brush in LayoutDisplayView._get_key_paths(steno_layout, stroke):
-            if not path or not brush:
-                break
+        for key in steno_layout.keys:
+            path = LayoutDisplayView._create_key_path(steno_layout, key)
+            brush = LayoutDisplayView._get_key_path_brush(key, (key.name in stroke))
 
+            # Add the key path before its label, then center the label
             scene.addPath(path, pen, brush)
+
+            if key.label:
+                label = QGraphicsSimpleTextItem(key.label)
+                label.setFont(font)
+
+                label_rect = label.boundingRect()
+                label_rect.moveCenter(path.boundingRect().center())
+                label.setPos(label_rect.x(), label_rect.y())
+                scene.addItem(label)
 
         # Scene rects don't shrink when items are removed, so need to manually
         # set it to the current size needed by the contained items + margin
@@ -64,45 +76,31 @@ class LayoutDisplayView(QGraphicsView):
         self.show()
 
     @staticmethod
-    def _get_key_paths(steno_layout: StenoLayout,
-                       stroke: List[str]) -> List[Tuple[QPainterPath, QBrush]]:
-        ''' Constructs paths for the layout '''
+    def _get_key_path_brush(key: StenoKey, is_pressed: bool) -> QBrush:
+        ''' Gets what brush the key should use '''
 
-        key_paths = []
+        if is_pressed and key.color_pressed:
+            path_brush = QBrush(QColor(key.color_pressed))
+        elif not is_pressed and key.color:
+            path_brush = QBrush(QColor(key.color))
+        else:
+            path_brush = QBrush()
+
+        return path_brush
+
+    @staticmethod
+    def _create_key_path(steno_layout: StenoLayout, key: StenoKey) -> QPainterPath:
+        ''' Creates the path for a key '''
+
         key_width = steno_layout.key_width
         key_height = steno_layout.key_height
 
-        for key in steno_layout.keys:
-            pos_x = key.position_x * key_width
-            pos_y = key.position_y * key_height
-            width = key_width * key.width
-            height = key_height * key.height
-            is_round_top = key.is_round_top
-            is_round_bottom = key.is_round_bottom
-
-            path = LayoutDisplayView._create_key_path(pos_x, pos_y,
-                                                      width, height,
-                                                      is_round_top,
-                                                      is_round_bottom)
-
-            # Determine what color the path should be filled with
-            is_in_stroke = (key.name in stroke)
-            if is_in_stroke and key.color_pressed:
-                path_brush = QBrush(QColor(key.color_pressed))
-            elif not is_in_stroke and key.color:
-                path_brush = QBrush(QColor(key.color))
-            else:
-                path_brush = QBrush()
-
-            key_paths.append((path, path_brush))
-
-        return key_paths
-
-    @staticmethod
-    def _create_key_path(pos_x: float, pos_y: float,
-                         width: float, height: float,
-                         is_round_top: bool, is_round_bottom: bool) -> QPainterPath:
-        ''' Creates the path for a key '''
+        pos_x = key.position_x * key_width
+        pos_y = key.position_y * key_height
+        width = key_width * key.width
+        height = key_height * key.height
+        is_round_top = key.is_round_top
+        is_round_bottom = key.is_round_bottom
 
         # Figure out adjustments needed to add rounded parts
         ellipse_height = min((width, height / 2))
