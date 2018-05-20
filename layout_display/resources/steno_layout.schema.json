@@ -18,6 +18,12 @@
             "default": "#000000",
             "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
         },
+        "stroke_color": {
+            "description": "ARGB hex code for the color of strokes",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
         "background_color": {
             "description": "ARGB hex code for the color behind the layout",
             "type": "string",
@@ -96,6 +102,11 @@
                     },
                     "font_color": {
                         "description": "ARGB hex code override for the font color of the key",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "stroke_color": {
+                        "description": "ARGB hex code override for the color of strokes for the key",
                         "type": "string",
                         "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
                     }

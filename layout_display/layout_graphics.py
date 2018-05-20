@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 
 from PyQt5.QtCore import Qt, QMarginsF
 from PyQt5.QtWidgets import (QWidget, QGraphicsView, QGraphicsScene,
@@ -51,6 +51,7 @@ class LayoutDisplayView(QGraphicsView):
         for key in steno_layout.keys:
             path = LayoutDisplayView._create_key_path(steno_layout, key)
             brush = LayoutDisplayView._get_key_path_brush(key, (key.name in stroke))
+            pen.setColor(QColor(key.stroke_color))
 
             # Add the key path before its label, then center the label
             scene.addPath(path, pen, brush)

@@ -9,6 +9,7 @@ import jsonschema
 DEF_LAYOUT_NAME = 'Default Layout Name'
 DEF_FONT = ''
 DEF_FONT_COLOR = '#000000'
+DEF_STROKE_COLOR = '#000000'
 DEF_BACKGROUND_COLOR = '#FFFFFF'
 DEF_MARGIN = 5.0
 DEF_KEY_WIDTH = 30.0
@@ -27,7 +28,7 @@ StenoKey = namedtuple('StenoKey',
                       'position_x position_y ' +
                       'width height ' +
                       'is_round_top is_round_bottom ' +
-                      'color color_pressed font_color')
+                      'color color_pressed font_color stroke_color')
 
 class StenoLayout():
     ''' Represents the structure of a stenography layout '''
@@ -78,6 +79,7 @@ class StenoLayout():
         self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
         self.font = data['font'] if 'font' in data else DEF_FONT
         font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
+        stroke_color = data['stroke_color'] if 'stroke_color' in data else DEF_STROKE_COLOR
         self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
         self.margin = data['margin'] if 'margin' in data else DEF_MARGIN
         self.key_width = data['key_width'] if 'key_width' in data else DEF_KEY_WIDTH
@@ -97,7 +99,8 @@ class StenoLayout():
                 key['is_round_bottom'] if 'is_round_bottom' in key else False,
                 key['color'] if 'color' in key else DEF_KEY_COLOR,
                 key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED,
-                key['font_color'] if 'font_color' in key else font_color
+                key['font_color'] if 'font_color' in key else font_color,
+                key['stroke_color'] if 'stroke_color' in key else stroke_color
             ))
 
         return True
