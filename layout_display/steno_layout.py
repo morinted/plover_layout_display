@@ -3,6 +3,7 @@ import json
 from typing import List
 
 from PyQt5 import QtCore
+import jsonschema
 
 
 DEF_LAYOUT_NAME = 'Default Layout Name'
@@ -41,39 +42,38 @@ class StenoLayout():
 
         self.keys: List[StenoKey] = []
 
-    def load_from_file(self, file_path: str):
+        self._validation_schema = StenoLayout._load_validation_schema()
+
+    def load_from_file(self, file_path: str) -> bool:
         ''' Populates layout information from the provided file path '''
 
         try:
             with open(file_path, encoding='utf-8') as file:
                 data = json.load(file)
-
-            self.load_from_json(data)
         except:
-            pass
+            return False
 
-    def load_from_resource(self, resource_path: str):
+        return self.load_from_json(data)
+
+    def load_from_resource(self, resource_path: str) -> bool:
         ''' Populates layout information from the provided Qt resource path '''
 
         try:
-            file = QtCore.QFile(resource_path)
-
-            if file.open(QtCore.QIODevice.ReadOnly | QtCore.QFile.Text):
-                text_stream = QtCore.QTextStream(file)
-                text_stream.setCodec('utf-8')
-                text_stream.setAutoDetectUnicode(True)
-
-                file_text = text_stream.readAll()
-                file.close()
-
-            data = json.loads(str(file_text))
-
-            self.load_from_json(data)
+            file_text = StenoLayout._load_qt_resource_text(resource_path)
+            data = json.loads(file_text)
         except:
-            pass
+            return False
 
-    def load_from_json(self, data: dict):
+        return self.load_from_json(data)
+
+    def load_from_json(self, data: dict) -> bool:
         ''' Populates layout information from the provided JSON data '''
+
+        # Validate the JSON file first before trying to load it
+        try:
+            jsonschema.validate(data, self._validation_schema)
+        except (jsonschema.ValidationError, jsonschema.SchemaError) as error:
+            return False
 
         self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
         self.font = data['font'] if 'font' in data else DEF_FONT
@@ -99,3 +99,40 @@ class StenoLayout():
                 key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED,
                 key['font_color'] if 'font_color' in key else font_color
             ))
+
+        return True
+
+    @staticmethod
+    def _load_validation_schema() -> dict:
+        ''' Loads a JSON Schema validation schema '''
+
+        data = {}
+
+        try:
+            file_text = StenoLayout._load_qt_resource_text(':/layout_display/steno_layout.schema.json')
+            data = json.loads(file_text)
+        except:
+            return {}
+
+        return data
+
+    @staticmethod
+    def _load_qt_resource_text(resource_path: str) -> str:
+        ''' Wrapper for loading a Qt resource file's text contents '''
+
+        file_text = ''
+
+        try:
+            file = QtCore.QFile(resource_path)
+
+            if file.open(QtCore.QIODevice.ReadOnly | QtCore.QFile.Text):
+                text_stream = QtCore.QTextStream(file)
+                text_stream.setCodec('utf-8')
+                text_stream.setAutoDetectUnicode(True)
+
+                file_text = str(text_stream.readAll())
+                file.close()
+        except:
+            return ''
+
+        return file_text

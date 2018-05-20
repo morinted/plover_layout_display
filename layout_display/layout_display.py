@@ -41,7 +41,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
         self.button_reset.clicked.connect(self.on_reset)
         self.button_load.clicked.connect(self.on_load)
-        
+
         engine.signal_connect('config_changed', self.on_config_changed)
         self.on_config_changed(engine.config)
         engine.signal_connect('stroked', self.on_stroke)
@@ -75,8 +75,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
         # If the user has no valid preference then fall back to the default
         preferred_layout_file = self.get_preferred_layout(self._system_name)
-        if preferred_layout_file:
-            self._layout.load_from_file(preferred_layout_file)
+        if preferred_layout_file and self._layout.load_from_file(preferred_layout_file):
             self.label_layout_name.setText(self._layout.name)
             self.layout_display_view.initialize_view(self._layout)
         else:
@@ -115,11 +114,12 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
         if not file_path:
             return
 
-        self._add_system_file_map(self._system_name, file_path)
-
-        self._layout.load_from_file(file_path)
-        self.label_layout_name.setText(self._layout.name)
-        self.layout_display_view.initialize_view(self._layout)
+        if self._layout.load_from_file(file_path):
+            self._add_system_file_map(self._system_name, file_path)
+            self.label_layout_name.setText(self._layout.name)
+            self.layout_display_view.initialize_view(self._layout)
+        else:
+            self.on_reset()
 
     def get_preferred_layout(self, system_name: str) -> str:
         ''' Gets the user's preferred layout file for the given system '''
