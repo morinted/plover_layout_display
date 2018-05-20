@@ -39,6 +39,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
         self.restore_state()
 
+        self.finished.connect(self.save_state)
         self.button_reset.clicked.connect(self.on_reset)
         self.button_load.clicked.connect(self.on_load)
         engine.signal_connect('config_changed', self.on_config_changed)

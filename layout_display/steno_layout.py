@@ -55,7 +55,7 @@ class StenoLayout():
         except:
             pass
 
-    def load_from_json(self, data):
+    def load_from_json(self, data: dict):
         ''' Populates layout information from the provided JSON data '''
 
         if 'name' in data:
@@ -81,13 +81,3 @@ class StenoLayout():
                 key['color'] if 'color' in key else '',
                 key['color_pressed'] if 'color_pressed' in key else '#000000'
             ))
-
-    def get_width(self) -> int:
-        ''' Calculates the width the layout requires '''
-
-        return max(self.margin + key.position_x + key.width * self.key_width for key in self.keys)
-
-    def get_height(self) -> int:
-        ''' Calculates the height the layout requires '''
-
-        return max(self.margin + key.position_y + key.height * self.key_height for key in self.keys)
