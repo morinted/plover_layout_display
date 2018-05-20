@@ -17,7 +17,7 @@ from layout_display.steno_layout import StenoLayout
 _ = get_gettext()
 
 class LayoutDisplay(Tool, Ui_LayoutDisplay):
-    ''' Steno layout display of strokes '''
+    ''' Stenography layout display of strokes '''
 
     TITLE = _('Layout Display')
     ROLE = 'layout_display'
