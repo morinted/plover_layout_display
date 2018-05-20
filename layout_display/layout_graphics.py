@@ -30,7 +30,14 @@ class LayoutDisplayView(QGraphicsView):
         # Make sure the layout display scene is scaled on initial "show"
         self.fitInView(self.graphics_scene.sceneRect(), Qt.KeepAspectRatio)
 
-    def update_view(self, steno_layout: StenoLayout, stroke: List[str] = []):
+    def initialize_view(self, steno_layout: StenoLayout):
+        ''' Initializes the view for the provided layout '''
+
+        # TODO: For now, just call update without a stroke, but these two
+        #       should be optimized to not re-create the scene each time
+        self.update_view(steno_layout, [])
+
+    def update_view(self, steno_layout: StenoLayout, stroke: List[str]):
         ''' Updates the layout display for the provided layout and stroke '''
 
         scene = self.graphics_scene
@@ -98,13 +105,13 @@ class LayoutDisplayView(QGraphicsView):
         ''' Creates the path for a key '''
 
         # Figure out adjustments needed to add rounded parts
-        h_ellipse = min((width, height / 2))
+        ellipse_height = min((width, height / 2))
 
-        pos_y = pos_y + h_ellipse / 2 if is_round_top else pos_y
+        pos_y = pos_y + ellipse_height / 2 if is_round_top else pos_y
         if is_round_top and is_round_bottom:
-            height = height - h_ellipse
+            height = height - ellipse_height
         elif is_round_top or is_round_bottom:
-            height = height - h_ellipse / 2
+            height = height - ellipse_height / 2
 
         # Construct the main key shape
         key_path = QPainterPath()
@@ -114,12 +121,14 @@ class LayoutDisplayView(QGraphicsView):
         if is_round_top:
             key_top = QPainterPath()
 
-            key_top.addEllipse(pos_x, pos_y - h_ellipse / 2, width, h_ellipse)
+            key_top.addEllipse(pos_x, pos_y - ellipse_height / 2,
+                               width, ellipse_height)
             key_path = key_path.united(key_top)
         if is_round_bottom:
             key_bottom = QPainterPath()
 
-            key_bottom.addEllipse(pos_x, pos_y + height - h_ellipse / 2, width, h_ellipse)
+            key_bottom.addEllipse(pos_x, pos_y + height - ellipse_height / 2,
+                                  width, ellipse_height)
             key_path = key_path.united(key_bottom)
 
         return key_path
