@@ -98,8 +98,8 @@ class LayoutDisplayView(QGraphicsView):
         key_width = steno_layout.key_width
         key_height = steno_layout.key_height
 
-        pos_x = key.position_x * key_width
-        pos_y = key.position_y * key_height
+        pos_x = key.x * key_width
+        pos_y = key.y * key_height
         width = key_width * key.width
         height = key_height * key.height
         is_round_top = key.is_round_top

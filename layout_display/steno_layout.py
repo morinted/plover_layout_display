@@ -7,39 +7,39 @@ import jsonschema
 
 
 DEF_LAYOUT_NAME = 'Default Layout Name'
-DEF_FONT = ''
-DEF_FONT_COLOR = '#000000'
-DEF_STROKE_COLOR = '#000000'
-DEF_BACKGROUND_COLOR = '#FFFFFF'
 DEF_MARGIN = 5.0
 DEF_KEY_WIDTH = 30.0
 DEF_KEY_HEIGHT = 35.0
+DEF_FONT = ''
+DEF_FONT_COLOR = '#000000'
+DEF_BACKGROUND_COLOR = '#FFFFFF'
+DEF_STROKE_COLOR = '#000000'
+DEF_KEY_COLOR = ''
+DEF_KEY_COLOR_PRESSED = '#000000'
 
 DEF_KEY_LABEL = ''
 DEF_KEY_WIDTH_UNIT = 1.0
 DEF_KEY_HEIGHT_UNIT = 1.0
 DEF_KEY_POS_X = 0.0
 DEF_KEY_POS_Y = 0.0
-DEF_KEY_COLOR = ''
-DEF_KEY_COLOR_PRESSED = '#000000'
 
 StenoKey = namedtuple('StenoKey',
                       'name label ' +
-                      'position_x position_y ' +
+                      'x y ' +
                       'width height ' +
                       'is_round_top is_round_bottom ' +
-                      'color color_pressed font_color stroke_color')
+                      'font_color stroke_color color color_pressed')
 
 class StenoLayout():
     ''' Represents the structure of a stenography layout '''
 
     def __init__(self):
         self.name = DEF_LAYOUT_NAME
-        self.font = DEF_FONT
-        self.background_color = DEF_BACKGROUND_COLOR
         self.margin = DEF_MARGIN
         self.key_width = DEF_KEY_WIDTH
         self.key_height = DEF_KEY_HEIGHT
+        self.font = DEF_FONT
+        self.background_color = DEF_BACKGROUND_COLOR
 
         self.keys: List[StenoKey] = []
 
@@ -77,13 +77,15 @@ class StenoLayout():
             return False
 
         self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
-        self.font = data['font'] if 'font' in data else DEF_FONT
-        font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
-        stroke_color = data['stroke_color'] if 'stroke_color' in data else DEF_STROKE_COLOR
-        self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
         self.margin = data['margin'] if 'margin' in data else DEF_MARGIN
         self.key_width = data['key_width'] if 'key_width' in data else DEF_KEY_WIDTH
         self.key_height = data['key_height'] if 'key_height' in data else DEF_KEY_HEIGHT
+        self.font = data['font'] if 'font' in data else DEF_FONT
+        font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
+        self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
+        key_stroke_color = data['key_stroke_color'] if 'key_stroke_color' in data else DEF_STROKE_COLOR
+        key_color = data['key_color'] if 'key_color' in data else DEF_KEY_COLOR
+        key_color_pressed = data['key_color'] if 'key_color' in data else DEF_KEY_COLOR_PRESSED
 
         self.keys = []
         for key in data['keys']:
@@ -91,16 +93,16 @@ class StenoLayout():
                 # Make sure that name always exists; we'll default to unique
                 key['name'] if 'name' in key else str(len(self.keys)),
                 key['label'] if 'label' in key else DEF_KEY_LABEL,
-                key['position_x'] if 'position_x' in key else DEF_KEY_POS_X,
-                key['position_y'] if 'position_y' in key else DEF_KEY_POS_Y,
+                key['x'] if 'x' in key else DEF_KEY_POS_X,
+                key['y'] if 'y' in key else DEF_KEY_POS_Y,
                 key['width'] if 'width' in key else DEF_KEY_WIDTH_UNIT,
                 key['height'] if 'height' in key else DEF_KEY_HEIGHT_UNIT,
                 key['is_round_top'] if 'is_round_top' in key else False,
                 key['is_round_bottom'] if 'is_round_bottom' in key else False,
-                key['color'] if 'color' in key else DEF_KEY_COLOR,
-                key['color_pressed'] if 'color_pressed' in key else DEF_KEY_COLOR_PRESSED,
                 key['font_color'] if 'font_color' in key else font_color,
-                key['stroke_color'] if 'stroke_color' in key else stroke_color
+                key['stroke_color'] if 'stroke_color' in key else key_stroke_color,
+                key['color'] if 'color' in key else key_color,
+                key['color_pressed'] if 'color_pressed' in key else key_color_pressed
             ))
 
         return True

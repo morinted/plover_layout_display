@@ -8,28 +8,6 @@
             "description": "The name of the layout",
             "type": "string"
         },
-        "font": {
-            "description": "The name for the system font to use for any text",
-            "type": "string"
-        },
-        "font_color": {
-            "description": "ARGB hex code for the default font color",
-            "type": "string",
-            "default": "#000000",
-            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-        },
-        "stroke_color": {
-            "description": "ARGB hex code for the color of strokes",
-            "type": "string",
-            "default": "#000000",
-            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-        },
-        "background_color": {
-            "description": "ARGB hex code for the color behind the layout",
-            "type": "string",
-            "default": "#FFFFFF",
-            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-        },
         "margin": {
             "description": "The margin size on all sides of the layout",
             "type": "number",
@@ -45,6 +23,39 @@
             "type": "number",
             "default": 35.0
         },
+        "font": {
+            "description": "The name for the system font to use for any text",
+            "type": "string"
+        },
+        "font_color": {
+            "description": "ARGB hex code for the default font color",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "background_color": {
+            "description": "ARGB hex code for the color behind the layout",
+            "type": "string",
+            "default": "#FFFFFF",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_stroke_color": {
+            "description": "ARGB hex code for the color of the keys' strokes",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_color": {
+            "description": "ARGB hex code for the color of the keys",
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_color_pressed": {
+            "description": "ARGB hex code for the color of the keys when pressed",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
         "keys": {
             "description": "The key definitions for the layout",
             "type": "array",
@@ -59,23 +70,23 @@
                         "description": "The text to display in the center of the key",
                         "type": "string"
                     },
-                    "position_x": {
+                    "x": {
                         "description": "The number of key width units from the origin on the x axis the key is",
                         "type": "number",
                         "default": 0.0
                     },
-                    "position_y": {
+                    "y": {
                         "description": "The number of key height units from the origin on the y axis the key is",
                         "type": "number",
                         "default": 0.0
                     },
                     "width": {
-                        "description": "The number of standard key width units the key is",
+                        "description": "The number of key width units the key is",
                         "type": "number",
                         "default": 1.0
                     },
                     "height": {
-                        "description": "The number of standard key height units the key is",
+                        "description": "The number of key height units the key is",
                         "type": "number",
                         "default": 1.0
                     },
@@ -89,24 +100,23 @@
                         "type": "boolean",
                         "default": false
                     },
-                    "color": {
-                        "description": "ARGB hex code for the color of the key",
-                        "type": "string",
-                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-                    },
-                    "color_pressed": {
-                        "description": "ARGB hex code for the color of the key when pressed",
-                        "type": "string",
-                        "default": "#000000",
-                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-                    },
                     "font_color": {
                         "description": "ARGB hex code override for the font color of the key",
                         "type": "string",
                         "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
                     },
                     "stroke_color": {
-                        "description": "ARGB hex code override for the color of strokes for the key",
+                        "description": "ARGB hex code override for the color of key's strokes",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "color": {
+                        "description": "ARGB hex code override for the color of the key",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "color_pressed": {
+                        "description": "ARGB hex code override for the color of the key when pressed",
                         "type": "string",
                         "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
                     }

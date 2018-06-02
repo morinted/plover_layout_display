@@ -7,8 +7,8 @@
         {
             "name": "#",
             "label": "",
-            "position_x": 0.0,
-            "position_y": 0.0,
+            "x": 0.0,
+            "y": 0.0,
             "width": 10.0,
             "height": 0.5
         },
@@ -16,8 +16,8 @@
         {
             "name": "S-",
             "label": "",
-            "position_x": 0.0,
-            "position_y": 0.5,
+            "x": 0.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 2.0,
             "is_round_bottom": true
@@ -25,32 +25,32 @@
         {
             "name": "T-",
             "label": "",
-            "position_x": 1,
-            "position_y": 0.5,
+            "x": 1.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "P-",
             "label": "",
-            "position_x": 2,
-            "position_y": 0.5,
+            "x": 2.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "H-",
             "label": "",
-            "position_x": 3,
-            "position_y": 0.5,
+            "x": 3.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "*",
             "label": "",
-            "position_x": 4,
-            "position_y": 0.5,
+            "x": 4.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 2.0,
             "is_round_bottom": true
@@ -58,40 +58,40 @@
         {
             "name": "-F",
             "label": "",
-            "position_x": 5,
-            "position_y": 0.5,
+            "x": 5.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "-P",
             "label": "",
-            "position_x": 6,
-            "position_y": 0.5,
+            "x": 6.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "-L",
             "label": "",
-            "position_x": 7,
-            "position_y": 0.5,
+            "x": 7.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "-T",
             "label": "",
-            "position_x": 8,
-            "position_y": 0.5,
+            "x": 8.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
         {
             "name": "-D",
             "label": "",
-            "position_x": 9,
-            "position_y": 0.5,
+            "x": 9.0,
+            "y": 0.5,
             "width": 1.0,
             "height": 1.0
         },
@@ -99,8 +99,8 @@
         {
             "name": "K-",
             "label": "",
-            "position_x": 1,
-            "position_y": 1.5,
+            "x": 1.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -108,8 +108,8 @@
         {
             "name": "W-",
             "label": "",
-            "position_x": 2,
-            "position_y": 1.5,
+            "x": 2.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -117,8 +117,8 @@
         {
             "name": "R-",
             "label": "",
-            "position_x": 3,
-            "position_y": 1.5,
+            "x": 3.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -126,8 +126,8 @@
         {
             "name": "-R",
             "label": "",
-            "position_x": 5,
-            "position_y": 1.5,
+            "x": 5.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -135,8 +135,8 @@
         {
             "name": "-B",
             "label": "",
-            "position_x": 6,
-            "position_y": 1.5,
+            "x": 6.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -144,8 +144,8 @@
         {
             "name": "-G",
             "label": "",
-            "position_x": 7,
-            "position_y": 1.5,
+            "x": 7.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -153,8 +153,8 @@
         {
             "name": "-S",
             "label": "",
-            "position_x": 8,
-            "position_y": 1.5,
+            "x": 8.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -162,8 +162,8 @@
         {
             "name": "-Z",
             "label": "",
-            "position_x": 9,
-            "position_y": 1.5,
+            "x": 9.0,
+            "y": 1.5,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -172,8 +172,8 @@
         {
             "name": "A-",
             "label": "",
-            "position_x": 2.2,
-            "position_y": 2.6,
+            "x": 2.2,
+            "y": 2.6,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -181,8 +181,8 @@
         {
             "name": "O-",
             "label": "",
-            "position_x": 3.2,
-            "position_y": 2.6,
+            "x": 3.2,
+            "y": 2.6,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -190,8 +190,8 @@
         {
             "name": "-E",
             "label": "",
-            "position_x": 4.8,
-            "position_y": 2.6,
+            "x": 4.8,
+            "y": 2.6,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
@@ -199,8 +199,8 @@
         {
             "name": "-U",
             "label": "",
-            "position_x": 5.8,
-            "position_y": 2.6,
+            "x": 5.8,
+            "y": 2.6,
             "width": 1.0,
             "height": 1.0,
             "is_round_bottom": true
