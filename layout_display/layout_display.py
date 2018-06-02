@@ -67,6 +67,11 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
     def on_config_changed(self, config):
         ''' Updates state based off of the new Plover configuration '''
 
+        # If something unrelated changes like a new dictionary
+        # being added then the system name will not be in config
+        if 'system_name' not in config:
+            return
+
         self._stroke = []
         self._numbers = set(system.NUMBERS.values())
         self._numbers_to_keys = {v: k for k, v in system.NUMBERS.items()}
