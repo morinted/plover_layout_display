@@ -1,125 +1,155 @@
-import time
-from collections import namedtuple
-from math import ceil
+from pathlib import Path
+from typing import Optional
 
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QPainter, QFont, QColor, QPainterPath, QBrush
+from PyQt5.QtCore import QSettings
+from PyQt5.QtWidgets import QFileDialog
 
 from plover import system
+from plover.config import CONFIG_DIR
+from plover.engine import StenoEngine
+from plover.steno import Stroke
 from plover.gui_qt.i18n import get_gettext
 from plover.gui_qt.tool import Tool
 
 from layout_display.layout_display_ui import Ui_LayoutDisplay
+from layout_display.steno_layout import StenoLayout
+
 
 _ = get_gettext()
 
-
 class LayoutDisplay(Tool, Ui_LayoutDisplay):
-
-    ''' Paper tape display of strokes. '''
+    ''' Stenography layout display of strokes. '''
 
     TITLE = _('Layout Display')
     ROLE = 'layout_display'
     ICON = ':/layout_display/steno_key.svg'
 
-    def __init__(self, engine):
+    def __init__(self, engine: StenoEngine):
         super(LayoutDisplay, self).__init__(engine)
         self.setupUi(self)
+
         self._stroke = []
+        self._numbers = set()
+        self._numbers_to_keys = {}
+        self._number_key = ''
+        self._system_name = ''
+        self._system_file_map = {}
+
+        self._layout = StenoLayout()
+
+        self.restore_state()
+        self.finished.connect(self.save_state)
+
+        self.button_reset.clicked.connect(self.on_reset)
+        self.button_load.clicked.connect(self.on_load)
+
         engine.signal_connect('config_changed', self.on_config_changed)
         self.on_config_changed(engine.config)
         engine.signal_connect('stroked', self.on_stroke)
 
-    @staticmethod
-    def _set_label_color(label, color, opacity=255):
-        label.setStyleSheet(
-            'color: rgba(%s, %s, %s, %s)' % (
-                color.red(), color.green(), color.blue(), opacity
-            )
-        )
+        self.layout_display_view.initialize_view(self._layout)
+
+    def _save_state(self, settings: QSettings):
+        '''
+        Save state to settings.
+        Called via save_state through plover.qui_qt.utils.WindowState
+        '''
+
+        settings.setValue('system_file_map', self._system_file_map)
+
+    def _restore_state(self, settings: QSettings):
+        '''
+        Restore state from settings.
+        Called via restore_state through plover.qui_qt.utils.WindowState
+        '''
+
+        self._system_file_map = settings.value('system_file_map', {}, dict)
 
     def on_config_changed(self, config):
-        if 'system_name' in config:
-            self._stroke = []
-            self._numbers = set(system.NUMBERS.values())
-            self._numbers_to_keys = {v: k for k, v in system.NUMBERS.items()}
+        ''' Updates state based off of the new Plover configuration '''
 
-    def paintEvent(self, event):
-        padding = 4
-        key_width = 30
-        key_height = 35
-        StenoKey = namedtuple('StenoKey', 'x y w h rounded key_name')
-        keys = (
-            [ StenoKey(0, 0, 10, 0.5, False, '#'),
-              StenoKey(0, 0.5, 1, 2, True, 'S-'),
-              StenoKey(4, 0.5, 1, 2, True, '*'),
-            ] + [StenoKey(x + 1, 0.5, 1, 1, False, letter)
-                 for x, letter in enumerate('T-,P-,H-,,-F,-P,-L,-T,-D'.split(',')) if letter]
-              + [StenoKey(x + 1, 1.5, 1, 1, True, letter)
-                 for x, letter in enumerate('K-,W-,R-,,-R,-B,-G,-S,-Z'.split(',')) if letter]
-              + [StenoKey(x + 2.2, 2.5, 1, 1, True, letter) for x, letter in enumerate(['A-', 'O-'])]
-              + [StenoKey(x + 4.8, 2.5, 1, 1, True, letter) for x, letter in enumerate(['-E', '-U'])]
-        )
-        qp = QPainter()
-        qp.begin(self)
-        qp.setRenderHint(QPainter.Antialiasing)
-        painting_width = 10 * (key_width + padding) + padding
-        painting_height = 3.5 * (key_height + padding) + padding * 1.5
-        qp.setWindow(0, 0, painting_width, painting_height)
-        min_scale = min(self.width() / painting_width, self.height() / painting_height)
-        qp.translate(
-            (abs(self.width() / min_scale - painting_width)) / 2,
-            (abs(self.height() / min_scale - painting_height)) / 2
-        )
-        qp.setViewport(0, 0, painting_width * min_scale, painting_height * min_scale)
-        filled_key_brush = QBrush(QColor.fromRgb(0, 0, 0))
+        # If something unrelated changes like a new dictionary
+        # being added then the system name will not be in config
+        if 'system_name' not in config:
+            return
 
-        key_paths = {}
+        self._stroke = []
+        self._numbers = set(system.NUMBERS.values())
+        self._numbers_to_keys = {v: k for k, v in system.NUMBERS.items()}
+        self._number_key = system.NUMBER_KEY
+        self._system_name = config['system_name']
 
-        for x, y, w, h, rounded, key_name in keys:
-            w = key_width * w + ceil(w - 1) * padding
-            h = key_height * h + ceil(h - 1) * padding
-            path = key_paths.get((w, h, rounded))
-            if path is None:
-                path = self._steno_key_path(1, 1, w, h, rounded)
-                key_paths[(w, h, rounded)] = path
-            x = (x + 1) * padding + x * key_width
-            y = ceil(y + 1) * padding + y * key_height
-            qp.save()
-            qp.translate(x, y)
-            (qp.fillPath(path, filled_key_brush)
-             if key_name in self._stroke
-             else qp.drawPath(path)
-            )
-            qp.restore()
-        qp.end()
-
-    def _steno_key_path(self, x, y, w, h, rounded=False, corner_radius=0):
-        ellipse_y = min((w, h / 2)) if rounded else 0
-        height_offset = ellipse_y / 2 if rounded else 0
-        box = QPainterPath()
-        if corner_radius:
-            box_height = h - height_offset + (corner_radius if rounded else 0)
-            box.addRoundedRect(x, y, w, box_height, corner_radius, corner_radius)
+        # If the user has no valid preference then fall back to the default
+        preferred_layout_file = self.get_preferred_layout(self._system_name)
+        if preferred_layout_file and self._layout.load_from_file(preferred_layout_file):
+            self.label_layout_name.setText(self._layout.name)
+            self.layout_display_view.initialize_view(self._layout)
         else:
-            box.addRect(x, y, w, h - height_offset)
-        if rounded:
-            round_bottom = QPainterPath()
+            self.on_reset()
 
-            round_bottom.addEllipse(x, y + h - height_offset - ellipse_y / 2, w, ellipse_y)
-            box = box.united(round_bottom)
-        return box
+    def on_stroke(self, stroke: Stroke):
+        ''' Updates state based off of the latest stroke by the user '''
 
-    def drawText(self, event, qp):
-        qp.setPen(QColor(168, 34, 3))
-        qp.setFont(QFont('Decorative', 10))
-        qp.drawRect(10, 10, 100, 100)
-        qp.drawText(event.rect(), Qt.AlignCenter, 'booop')
-
-    def on_stroke(self, stroke):
         keys = stroke.steno_keys[:]
+
+        # Handle converting numbers in the stroke to the actual key values
         if any(key in self._numbers for key in keys):
-            keys.append('#')
+            keys.append(self._number_key)
         keys = [self._numbers_to_keys[x] if x in self._numbers_to_keys else x for x in keys]
+
         self._stroke = keys
-        self.update()
+        self.layout_display_view.update_view(self._layout, keys)
+
+    def on_reset(self):
+        ''' Resets the layout to the built-in default layout '''
+
+        self._remove_system_file_map(self._system_name)
+
+        self._layout.load_from_resource(':/layout_display/english_stenotype.json')
+        self.label_layout_name.setText(self._layout.name)
+        self.layout_display_view.initialize_view(self._layout)
+
+    def on_load(self):
+        ''' Gets a layout file from the user to load '''
+
+        # The API says this should return a string, but it returns a tuple
+
+        file_path, _filter = QFileDialog.getOpenFileName(self, _('Open Layout File'),
+                                                         CONFIG_DIR, '(*.json)')
+
+        # If the user cancelled out of the dialog then we will have a null string
+        if not file_path:
+            return
+
+        if self._layout.load_from_file(file_path):
+            self._add_system_file_map(self._system_name, file_path)
+            self.label_layout_name.setText(self._layout.name)
+            self.layout_display_view.initialize_view(self._layout)
+        else:
+            self.on_reset()
+
+    def get_preferred_layout(self, system_name: str) -> Optional[str]:
+        ''' Gets the user's preferred layout file for the given system '''
+
+        file_path = self._system_file_map.get(system_name)
+
+        # At least validate the file still exists
+        if file_path and not Path(file_path).is_file():
+            file_path = None
+            self._remove_system_file_map(system_name)
+            self.save_state()
+
+        return file_path
+
+    def _add_system_file_map(self, system_name: str, file_path: str):
+        ''' Updates the mapping from system to file path with a new entry '''
+
+        self._system_file_map[system_name] = file_path
+        self.save_state()
+
+    def _remove_system_file_map(self, system_name: str):
+        ''' Updates the mapping from system to file path by removing an entry '''
+
+        if system_name in self._system_file_map:
+            self._system_file_map.pop(system_name)
+            self.save_state()

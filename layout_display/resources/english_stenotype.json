@@ -1,0 +1,209 @@
+{
+    "name": "English Stenotype",
+    "margin": 5.0,
+    "key_width": 30.0,
+    "key_height": 35.0,
+    "keys": [
+        {
+            "name": "#",
+            "label": "",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 10.0,
+            "height": 0.5
+        },
+
+        {
+            "name": "S-",
+            "label": "",
+            "x": 0.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 2.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "T-",
+            "label": "",
+            "x": 1.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "P-",
+            "label": "",
+            "x": 2.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "H-",
+            "label": "",
+            "x": 3.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "*",
+            "label": "",
+            "x": 4.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 2.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-F",
+            "label": "",
+            "x": 5.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "-P",
+            "label": "",
+            "x": 6.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "-L",
+            "label": "",
+            "x": 7.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "-T",
+            "label": "",
+            "x": 8.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+        {
+            "name": "-D",
+            "label": "",
+            "x": 9.0,
+            "y": 0.5,
+            "width": 1.0,
+            "height": 1.0
+        },
+
+        {
+            "name": "K-",
+            "label": "",
+            "x": 1.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "W-",
+            "label": "",
+            "x": 2.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "R-",
+            "label": "",
+            "x": 3.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-R",
+            "label": "",
+            "x": 5.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-B",
+            "label": "",
+            "x": 6.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-G",
+            "label": "",
+            "x": 7.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-S",
+            "label": "",
+            "x": 8.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-Z",
+            "label": "",
+            "x": 9.0,
+            "y": 1.5,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+
+        {
+            "name": "A-",
+            "label": "",
+            "x": 2.2,
+            "y": 2.6,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "O-",
+            "label": "",
+            "x": 3.2,
+            "y": 2.6,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-E",
+            "label": "",
+            "x": 4.8,
+            "y": 2.6,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        },
+        {
+            "name": "-U",
+            "label": "",
+            "x": 5.8,
+            "y": 2.6,
+            "width": 1.0,
+            "height": 1.0,
+            "is_round_bottom": true
+        }
+    ] 
+}

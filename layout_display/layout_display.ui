@@ -22,16 +22,86 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Plover: Layout Display</string>
+   <string>Layout Display</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <property name="modal">
-   <bool>false</bool>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout"/>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="grid_layout">
+     <item row="1" column="2">
+      <widget class="QPushButton" name="button_load">
+       <property name="toolTip">
+        <string>Select a layout file to load</string>
+       </property>
+       <property name="text">
+        <string>Load</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_layout_name">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="accessibleName">
+        <string>Layout Name</string>
+       </property>
+       <property name="accessibleDescription">
+        <string>The currently loaded layout's name</string>
+       </property>
+       <property name="text">
+        <string>Default Layout Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="button_reset">
+       <property name="toolTip">
+        <string>Reset the layout to the default</string>
+       </property>
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="LayoutDisplayView" name="layout_display_view">
+     <property name="accessibleName">
+      <string>Layout Display Area</string>
+     </property>
+     <property name="accessibleDescription">
+      <string>The display area for the loaded layout</string>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="renderHints">
+      <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LayoutDisplayView</class>
+   <extends>QGraphicsView</extends>
+   <header>layout_display.layout_graphics</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources/resources.qrc"/>
  </resources>

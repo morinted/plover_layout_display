@@ -1,0 +1,133 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Stenography Layout",
+    "description": "A layout used for stenography systems",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the layout",
+            "type": "string"
+        },
+        "margin": {
+            "description": "The margin size on all sides of the layout",
+            "type": "number",
+            "default": 5.0
+        },
+        "key_width": {
+            "description": "The standard width of a key in the layout",
+            "type": "number",
+            "default": 30.0
+        },
+        "key_height": {
+            "description": "The standard height of a key in the layout",
+            "type": "number",
+            "default": 35.0
+        },
+        "font": {
+            "description": "The name for the system font to use for any text",
+            "type": "string"
+        },
+        "font_color": {
+            "description": "ARGB hex code for the default font color",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "background_color": {
+            "description": "ARGB hex code for the color behind the layout",
+            "type": "string",
+            "default": "#FFFFFF",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_stroke_color": {
+            "description": "ARGB hex code for the color of the keys' strokes",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_color": {
+            "description": "ARGB hex code for the color of the keys",
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "key_color_pressed": {
+            "description": "ARGB hex code for the color of the keys when pressed",
+            "type": "string",
+            "default": "#000000",
+            "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+        },
+        "keys": {
+            "description": "The key definitions for the layout",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "The key in the stenography system this key corresponds to",
+                        "type": "string"
+                    },
+                    "label": {
+                        "description": "The text to display in the center of the key",
+                        "type": "string"
+                    },
+                    "x": {
+                        "description": "The number of key width units from the origin on the x axis the key is",
+                        "type": "number",
+                        "default": 0.0
+                    },
+                    "y": {
+                        "description": "The number of key height units from the origin on the y axis the key is",
+                        "type": "number",
+                        "default": 0.0
+                    },
+                    "width": {
+                        "description": "The number of key width units the key is",
+                        "type": "number",
+                        "default": 1.0
+                    },
+                    "height": {
+                        "description": "The number of key height units the key is",
+                        "type": "number",
+                        "default": 1.0
+                    },
+                    "is_round_top": {
+                        "description": "If the top of the key should be rounded",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "is_round_bottom": {
+                        "description": "If the bottom of the key should be rounded",
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "font_color": {
+                        "description": "ARGB hex code override for the font color of the key",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "stroke_color": {
+                        "description": "ARGB hex code override for the color of key's strokes",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "color": {
+                        "description": "ARGB hex code override for the color of the key",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    },
+                    "color_pressed": {
+                        "description": "ARGB hex code override for the color of the key when pressed",
+                        "type": "string",
+                        "pattern": "^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

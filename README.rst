@@ -1,14 +1,24 @@
 Plover Layout Display
 =====================
 
-Display the last stroke in a visual format for English stenography.
+Display the last stroke in Plover.
 
-.. image:: https://i.imgur.com/678YpG9.png
+.. image:: https://i.imgur.com/8AqhQk4.png
 
-Current Features
+Custom Layouts
 ----------------
 
-- Display the last stroke that was hit.
+You can customize the display in various ways by loading your own layout file. Layout file preferences are saved and loaded automatically for each stenography system that you use them for.
+
+See the `stenography layout JSON Schema <https://github.com/nsmarkop/plover_layout_display/blob/cb8ede4a2221e08cd44345c324a9874f8195fcb8/layout_display/resources/steno_layout.schema.json>`__ for the format to use when creating your own layout files.
+
+Some examples of custom layouts:
+
+.. image:: https://i.imgur.com/qjZ0uwn.png
+
+|
+
+.. image:: https://i.imgur.com/7zT77kL.png
 
 Wishlist
 --------
@@ -18,10 +28,7 @@ Wishlist
 This plugin isn't high on my priority list so please feel free to implement any of the below, or suggest new features.
 
 - Add a settings area.
-- Add optional key labeling.
-- Support customizing the colors.
 - Add a fade for the last chord to a user-specified time.
-- Support other theories and custom layouts.
 
 License
 -------
