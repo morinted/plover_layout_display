@@ -112,8 +112,9 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
         ''' Gets a layout file from the user to load '''
 
         # The API says this should return a string, but it returns a tuple
-        file_path, _ = QFileDialog.getOpenFileName(self, 'Open Layout File',
-                                                   CONFIG_DIR, '(*.json)')
+
+        file_path, _filter = QFileDialog.getOpenFileName(self, _('Open Layout File'),
+                                                         CONFIG_DIR, '(*.json)')
 
         # If the user cancelled out of the dialog then we will have a null string
         if not file_path:
