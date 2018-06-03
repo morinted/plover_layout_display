@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 from PyQt5.QtCore import QSettings
 from PyQt5.QtWidgets import QFileDialog
@@ -127,16 +128,14 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
         else:
             self.on_reset()
 
-    def get_preferred_layout(self, system_name: str) -> str:
+    def get_preferred_layout(self, system_name: str) -> Optional[str]:
         ''' Gets the user's preferred layout file for the given system '''
 
-        file_path = ''
-        if system_name in self._system_file_map:
-            file_path = self._system_file_map[system_name]
+        file_path = self._system_file_map.get(system_name)
 
         # At least validate the file still exists
         if file_path and not Path(file_path).is_file():
-            file_path = ''
+            file_path = None
             self._remove_system_file_map(system_name)
             self.save_state()
 

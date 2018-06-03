@@ -76,33 +76,33 @@ class StenoLayout():
         except (jsonschema.ValidationError, jsonschema.SchemaError) as error:
             return False
 
-        self.name = data['name'] if 'name' in data else DEF_LAYOUT_NAME
-        self.margin = data['margin'] if 'margin' in data else DEF_MARGIN
-        self.key_width = data['key_width'] if 'key_width' in data else DEF_KEY_WIDTH
-        self.key_height = data['key_height'] if 'key_height' in data else DEF_KEY_HEIGHT
-        self.font = data['font'] if 'font' in data else DEF_FONT
-        font_color = data['font_color'] if 'font_color' in data else DEF_FONT_COLOR
-        self.background_color = data['background_color'] if 'background_color' in data else DEF_BACKGROUND_COLOR
-        key_stroke_color = data['key_stroke_color'] if 'key_stroke_color' in data else DEF_STROKE_COLOR
-        key_color = data['key_color'] if 'key_color' in data else DEF_KEY_COLOR
-        key_color_pressed = data['key_color'] if 'key_color' in data else DEF_KEY_COLOR_PRESSED
+        self.name = data.get('name', DEF_LAYOUT_NAME)
+        self.margin = data.get('margin', DEF_MARGIN)
+        self.key_width = data.get('key_width', DEF_KEY_WIDTH)
+        self.key_height = data.get('key_height', DEF_KEY_HEIGHT)
+        self.font = data.get('font', DEF_FONT)
+        font_color = data.get('font_color', DEF_FONT_COLOR)
+        self.background_color = data.get('background_color', DEF_BACKGROUND_COLOR)
+        key_stroke_color = data.get('key_stroke_color', DEF_STROKE_COLOR)
+        key_color = data.get('key_color', DEF_KEY_COLOR)
+        key_color_pressed = data.get('key_color', DEF_KEY_COLOR_PRESSED)
 
         self.keys = []
         for key in data['keys']:
             self.keys.append(StenoKey(
                 # Make sure that name always exists; we'll default to unique
-                key['name'] if 'name' in key else str(len(self.keys)),
-                key['label'] if 'label' in key else DEF_KEY_LABEL,
-                key['x'] if 'x' in key else DEF_KEY_POS_X,
-                key['y'] if 'y' in key else DEF_KEY_POS_Y,
-                key['width'] if 'width' in key else DEF_KEY_WIDTH_UNIT,
-                key['height'] if 'height' in key else DEF_KEY_HEIGHT_UNIT,
-                key['is_round_top'] if 'is_round_top' in key else False,
-                key['is_round_bottom'] if 'is_round_bottom' in key else False,
-                key['font_color'] if 'font_color' in key else font_color,
-                key['stroke_color'] if 'stroke_color' in key else key_stroke_color,
-                key['color'] if 'color' in key else key_color,
-                key['color_pressed'] if 'color_pressed' in key else key_color_pressed
+                key.get('name', str(len(self.keys))),
+                key.get('label', DEF_KEY_LABEL),
+                key.get('x', DEF_KEY_POS_X),
+                key.get('y', DEF_KEY_POS_Y),
+                key.get('width', DEF_KEY_WIDTH_UNIT),
+                key.get('height', DEF_KEY_HEIGHT_UNIT),
+                key.get('is_round_top', False),
+                key.get('is_round_bottom', False),
+                key.get('font_color', font_color),
+                key.get('stroke_color', key_stroke_color),
+                key.get('color', key_color),
+                key.get('color_pressed', key_color_pressed)
             ))
 
         return True
