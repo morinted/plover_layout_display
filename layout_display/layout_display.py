@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Optional
 
-from PyQt5.QtCore import QSettings
+from PyQt5.QtCore import QSettings, Qt
 from PyQt5.QtWidgets import QFileDialog
 
 from plover import system
@@ -27,6 +27,8 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
     def __init__(self, engine: StenoEngine):
         super(LayoutDisplay, self).__init__(engine)
         self.setupUi(self)
+
+        self.button_pin.setDefaultAction(self.action_ToggleOnTop)
 
         self._stroke = []
         self._numbers = set()
@@ -127,6 +129,16 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
             self.layout_display_view.initialize_view(self._layout)
         else:
             self.on_reset()
+
+    def on_toggle_ontop(self, ontop):
+        ''' Toggles the "always on top" window flag '''
+        flags = self.windowFlags()
+        if ontop:
+            flags |= Qt.WindowStaysOnTopHint
+        else:
+            flags &= ~Qt.WindowStaysOnTopHint
+        self.setWindowFlags(flags)
+        self.show()
 
     def get_preferred_layout(self, system_name: str) -> Optional[str]:
         ''' Gets the user's preferred layout file for the given system '''
