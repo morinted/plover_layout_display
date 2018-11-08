@@ -29,47 +29,23 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="grid_layout">
-     <item row="1" column="2">
-      <widget class="QPushButton" name="button_load">
-       <property name="toolTip">
-        <string>Select a layout file to load</string>
-       </property>
-       <property name="text">
-        <string>Load</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_layout_name">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>1</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="accessibleName">
-        <string>Layout Name</string>
-       </property>
-       <property name="accessibleDescription">
-        <string>The currently loaded layout's name</string>
-       </property>
-       <property name="text">
-        <string>Default Layout Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="button_reset">
-       <property name="toolTip">
-        <string>Reset the layout to the default</string>
-       </property>
-       <property name="text">
-        <string>Reset</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QLabel" name="label_layout_name">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="accessibleName">
+      <string>Layout Name</string>
+     </property>
+     <property name="accessibleDescription">
+      <string>The currently loaded layout's name</string>
+     </property>
+     <property name="text">
+      <string>Default Layout Name</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="LayoutDisplayView" name="layout_display_view">
@@ -94,6 +70,30 @@
     </widget>
    </item>
   </layout>
+  <action name="action_Load">
+   <property name="icon">
+    <iconset resource="resources/resources.qrc">
+     <normaloff>:/layout_display/document.svg</normaloff>:/layout_display/document.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Load</string>
+   </property>
+   <property name="toolTip">
+    <string>Select a layout file to load.</string>
+   </property>
+  </action>
+  <action name="action_Reset">
+   <property name="icon">
+    <iconset resource="resources/resources.qrc">
+     <normaloff>:/layout_display/synchronize.svg</normaloff>:/layout_display/synchronize.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Reset</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset the layout to the default.</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -105,5 +105,42 @@
  <resources>
   <include location="resources/resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action_Load</sender>
+   <signal>triggered()</signal>
+   <receiver>LayoutDisplay</receiver>
+   <slot>on_load()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>174</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Reset</sender>
+   <signal>triggered()</signal>
+   <receiver>LayoutDisplay</receiver>
+   <slot>on_reset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>174</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_load()</slot>
+  <slot>on_reset()</slot>
+ </slots>
 </ui>
