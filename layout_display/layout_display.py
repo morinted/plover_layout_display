@@ -10,6 +10,7 @@ from plover.engine import StenoEngine
 from plover.steno import Stroke
 from plover.gui_qt.i18n import get_gettext
 from plover.gui_qt.tool import Tool
+from plover.gui_qt.utils import ToolBar
 
 from layout_display.layout_display_ui import Ui_LayoutDisplay
 from layout_display.steno_layout import StenoLayout
@@ -28,6 +29,11 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
         super(LayoutDisplay, self).__init__(engine)
         self.setupUi(self)
 
+        self.layout().addWidget(ToolBar(
+            self.action_Reset,
+            self.action_Load
+        ))
+
         self._stroke = []
         self._numbers = set()
         self._numbers_to_keys = {}
@@ -39,9 +45,6 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
         self.restore_state()
         self.finished.connect(self.save_state)
-
-        self.button_reset.clicked.connect(self.on_reset)
-        self.button_load.clicked.connect(self.on_load)
 
         engine.signal_connect('config_changed', self.on_config_changed)
         self.on_config_changed(engine.config)
