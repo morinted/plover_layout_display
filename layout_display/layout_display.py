@@ -5,7 +5,7 @@ from PyQt5.QtCore import QSettings
 from PyQt5.QtWidgets import QFileDialog
 
 from plover import system
-from plover.config import CONFIG_DIR
+from plover.oslayer.config import CONFIG_DIR
 from plover.engine import StenoEngine
 from plover.steno import Stroke
 from plover.gui_qt.i18n import get_gettext
