@@ -8,7 +8,6 @@ from plover import system
 from plover.oslayer.config import CONFIG_DIR
 from plover.engine import StenoEngine
 from plover.steno import Stroke
-from plover.gui_qt.i18n import get_gettext
 from plover.gui_qt.tool import Tool
 from plover.gui_qt.utils import ToolBar
 
@@ -16,12 +15,10 @@ from layout_display.layout_display_ui import Ui_LayoutDisplay
 from layout_display.steno_layout import StenoLayout
 
 
-_ = get_gettext()
-
 class LayoutDisplay(Tool, Ui_LayoutDisplay):
     ''' Stenography layout display of strokes. '''
 
-    TITLE = _('Layout Display')
+    TITLE = 'Layout Display'
     ROLE = 'layout_display'
     ICON = ':/layout_display/steno_key.svg'
 
@@ -117,7 +114,7 @@ class LayoutDisplay(Tool, Ui_LayoutDisplay):
 
         # The API says this should return a string, but it returns a tuple
 
-        file_path, _filter = QFileDialog.getOpenFileName(self, _('Open Layout File'),
+        file_path, _filter = QFileDialog.getOpenFileName(self, 'Open Layout File',
                                                          CONFIG_DIR, '(*.json)')
 
         # If the user cancelled out of the dialog then we will have a null string
