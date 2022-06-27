@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-__requires__ = '''
-plover>=4.0.0.dev2
-setuptools>=30.3.0
-'''
-
 from setuptools import setup
 
 from plover_build_utils.setup import BuildPy, BuildUi
